@@ -18,6 +18,13 @@ td:hover {
   background-color: grey;
 }
 
-.game {
-  /* display: flex; */
+.player1, .player2 {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+#game {
+  display: flex;
+  justify-content: center;
+  gap: 10rem;
 }

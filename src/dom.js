@@ -32,6 +32,9 @@ function createBoard(name) {
     table.appendChild(tr);
   }
   board.appendChild(table);
+  const label = document.createElement("h2");
+  label.textContent = name;
+  board.appendChild(label);
 
   const game = document.querySelector("#game");
   game.appendChild(board);
