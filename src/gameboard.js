@@ -36,6 +36,12 @@ export default class Gameboard {
     if (this.board[coord[0]][coord[1]] != null) {
       const ship = this.getShip(coord);
       ship.hit();
+      if (ship.isSunk()) this.ships -= 1;
     } else this.missed.push(coord);
+  }
+
+  allShipsSunk() {
+    if (this.ships <= 0) return true;
+    return false;
   }
 }
