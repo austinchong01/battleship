@@ -46,7 +46,7 @@ test("receiveAttack 2", () => {
 
 test("allShipsSunk", () => {
   const gameboard = new Gameboard();
-  const ship = gameboard.addShip([[0, 0], [1, 0]]);
+  gameboard.addShip([[0, 0], [1, 0]]);
   expect(gameboard.allShipsSunk()).toBe(false);
   gameboard.receiveAttack([0, 0]);
   gameboard.receiveAttack([1, 0]);
