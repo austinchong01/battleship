@@ -25,6 +25,7 @@ export default class Gameboard {
       this.board[coord[0]][coord[1]] = ship;
     }
     this.ships += 1;
+    return ship;
   }
 
   getShip(coord) {
