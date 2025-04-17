@@ -60,7 +60,6 @@ function domListener() {
 
       const player = players[domPlayer];
       player.gameboard.receiveAttack(coord);
-      console.log(player.gameboard.ships);
       changeTurn();
       displayTurn();
     }
