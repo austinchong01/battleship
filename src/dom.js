@@ -1,4 +1,4 @@
-import { players } from "./index.js";
+import { players, turn, changeTurn } from "./index.js";
 
 function renderBoard(player) {
   const board = document.querySelector(`.${player.name}-board`);
@@ -50,18 +50,26 @@ function createLabel(player) {
 function domListener() {
   const click = document.querySelector("#game");
   click.addEventListener("click", (e) => {
-    if (e.target.getAttribute("data-click") === null) {
-      const box = e.target;
+    const box = e.target;
+    const domPlayer = box.className.split(" ")[0];
+    if (box.getAttribute("data-click") === null && box.tagName === "TD" && domPlayer != turn.name) {
       const coord = JSON.parse(box.getAttribute("data-index"));
-      const domPlayer = box.className.split(" ")[0];
-      const boxType = box.className.split(" ")[1];
+      // const boxType = box.className.split(" ")[1];
       box.setAttribute("data-click", "clicked");
       box.style.opacity = 0.2;
 
       const player = players[domPlayer];
       player.gameboard.receiveAttack(coord);
+      console.log(player.gameboard.ships);
+      changeTurn();
+      displayTurn();
     }
   });
 }
 
-export { renderBoard, createLabel, domListener };
+function displayTurn() {
+  const turnDOM = document.querySelector("#turn");
+  turnDOM.textContent = `${turn.name}'s Turn`;
+}
+
+export { renderBoard, createLabel, domListener, displayTurn };

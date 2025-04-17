@@ -33,10 +33,6 @@ td:hover {
   background-color: red;
 }
 
-.turn {
+#turn {
   text-align: center;
-}
-
-.clicked {
-  opacity: 0.2;
 }
