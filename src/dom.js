@@ -1,7 +1,6 @@
-function createBoard(name) {
-  const board = document.createElement("div");
-  board.setAttribute("class", name);
-
+function renderBoard(player) {
+  const board = document.querySelector(`.${player.name}`);
+  board.textContent = ""; // reset
   const table = document.createElement("table");
 
   const header = document.createElement("tr");
@@ -25,19 +24,19 @@ function createBoard(name) {
 
     for (let j = 0; j < 10; j += 1) {
       const td = document.createElement("td");
-      td.setAttribute("data-index", `[${[i, j]}]`);
-      td.setAttribute("class", `${name}`);
+      td.setAttribute("data-index", `[${[j, i]}]`);
+      if (player.gameboard.board[j][i] != null){
+        td.setAttribute("class", "ship")
+      }
       tr.appendChild(td);
     }
     table.appendChild(tr);
   }
   board.appendChild(table);
-  const label = document.createElement("h2");
-  label.textContent = name;
-  board.appendChild(label);
 
-  const game = document.querySelector("#game");
-  game.appendChild(board);
+  const label = document.createElement("h2");
+  label.textContent = player.name;
+  board.appendChild(label);
 }
 
-export { createBoard };
+export { renderBoard };
