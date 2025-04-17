@@ -27,8 +27,9 @@ function renderBoard(player) {
     for (let j = 0; j < 10; j += 1) {
       const td = document.createElement("td");
       td.setAttribute("data-index", `[${[j, i]}]`);
-      if (player.gameboard.board[j][i] != null){
-        td.setAttribute("class", "ship")
+      td.setAttribute("class", player.name);
+      if (player.gameboard.board[j][i] != null) {
+        td.classList.add("ship");
       }
       tr.appendChild(td);
     }
@@ -37,11 +38,22 @@ function renderBoard(player) {
   board.appendChild(table);
 }
 
-function createLabel(player){
+function createLabel(player) {
   const board = document.querySelector(`.${player.name}`);
   const label = document.createElement("h2");
   label.textContent = player.name;
   board.appendChild(label);
 }
 
-export { renderBoard, createLabel };
+function domListener(){
+  const click = document.querySelector("#game");
+  click.addEventListener("click", (e) => {
+    const box = e.target;
+    const coord = box.getAttribute("data-index");
+    const player = box.className.split(" ")[0];
+    const boxType = box.className.split(" ")[1];
+    console.log(coord, player, boxType);
+  });
+}
+
+export { renderBoard, createLabel, domListener };
