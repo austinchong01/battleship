@@ -1,3 +1,5 @@
+import { players } from "./index.js";
+
 function renderBoard(player) {
   const board = document.querySelector(`.${player.name}-board`);
   board.textContent = ""; // reset
@@ -45,14 +47,20 @@ function createLabel(player) {
   board.appendChild(label);
 }
 
-function domListener(){
+function domListener() {
   const click = document.querySelector("#game");
   click.addEventListener("click", (e) => {
-    const box = e.target;
-    const coord = box.getAttribute("data-index");
-    const player = box.className.split(" ")[0];
-    const boxType = box.className.split(" ")[1];
-    console.log(coord, player, boxType);
+    if (e.target.getAttribute("data-click") === null) {
+      const box = e.target;
+      const coord = JSON.parse(box.getAttribute("data-index"));
+      const domPlayer = box.className.split(" ")[0];
+      const boxType = box.className.split(" ")[1];
+      box.setAttribute("data-click", "clicked");
+      box.style.opacity = 0.2;
+
+      const player = players[domPlayer];
+      player.gameboard.receiveAttack(coord);
+    }
   });
 }
 

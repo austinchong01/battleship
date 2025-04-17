@@ -36,3 +36,7 @@ td:hover {
 .turn {
   text-align: center;
 }
+
+.clicked {
+  opacity: 0.2;
+}

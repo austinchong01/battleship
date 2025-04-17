@@ -33,11 +33,14 @@ export default class Gameboard {
   }
 
   receiveAttack(coord) {
-    if (this.board[coord[0]][coord[1]] != null) {
-      const ship = this.getShip(coord);
-      ship.hit();
-      if (ship.isSunk()) this.ships -= 1;
-    } else this.missed.push(coord);
+    if (this.board[coord[0]][coord[1]] != "clicked") {
+      if (this.board[coord[0]][coord[1]] != null) {
+        const ship = this.getShip(coord);
+        ship.hit();
+        if (ship.isSunk()) this.ships -= 1;
+      } else this.missed.push(coord);
+    }
+    this.board[coord[0]][coord[1]] = "clicked";
   }
 
   allShipsSunk() {
