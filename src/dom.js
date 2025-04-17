@@ -1,8 +1,9 @@
 function renderBoard(player) {
-  const board = document.querySelector(`.${player.name}`);
+  const board = document.querySelector(`.${player.name}-board`);
   board.textContent = ""; // reset
   const table = document.createElement("table");
 
+  // horizontal header
   const header = document.createElement("tr");
   const blank = document.createElement("th");
   header.appendChild(blank);
@@ -17,6 +18,7 @@ function renderBoard(player) {
   for (let i = 0; i < 10; i += 1) {
     const tr = document.createElement("tr");
 
+    // vertical header
     const th = document.createElement("th");
     th.textContent = i;
     // th.textContent = i + 1;
@@ -33,10 +35,13 @@ function renderBoard(player) {
     table.appendChild(tr);
   }
   board.appendChild(table);
+}
 
+function createLabel(player){
+  const board = document.querySelector(`.${player.name}`);
   const label = document.createElement("h2");
   label.textContent = player.name;
   board.appendChild(label);
 }
 
-export { renderBoard };
+export { renderBoard, createLabel };

@@ -1,9 +1,12 @@
 import Player from "./player.js"
-import { renderBoard } from "./dom.js";
+import { renderBoard, createLabel } from "./dom.js";
 import "./styles.css";
 
 const player1 = new Player("player1", "human");
 const player2 = new Player("player2", "computer");
+
+createLabel(player1);
+createLabel(player2);
 
 player1.gameboard.addShip([[0, 0], [1, 0]]);
 player1.gameboard.addShip([[9, 0], [9, 1], [9, 2], [9, 3]]);
