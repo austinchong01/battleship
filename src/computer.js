@@ -17,10 +17,4 @@ function computerClick() {
     return coord;
 }
 
-computerClick()
-computerClick()
-computerClick()
-computerClick()
-computerClick()
-
 export { computerClick }

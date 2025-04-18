@@ -14,11 +14,13 @@ export default class Game {
     return false
   }
 
-  // play(){
-  //   while(!this.gameOver()){
-
-  //   }
-  // }
+  play(){
+    while(!this.gameOver()){
+      let click = new Promise((resolve, reject) => {
+        
+      })
+    }
+  }
 
   changeTurn() {
     if (this.turn === this.player1) this.turn = this.player2;
