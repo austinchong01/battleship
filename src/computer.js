@@ -13,7 +13,8 @@ function computerClick() {
     clicked.push(boxNum);
     const x = boxNum % 10;
     const y = Math.floor(boxNum / 10);
-    const coord = [x, y]
+    const coord = [x, y];
+    return coord;
 }
 
 computerClick()
@@ -21,3 +22,5 @@ computerClick()
 computerClick()
 computerClick()
 computerClick()
+
+export { computerClick }

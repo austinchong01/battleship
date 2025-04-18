@@ -1,75 +1,71 @@
-import Player from "./player.js";
+import Game from "./game.js";
 import { renderBoard, createLabel, domListener, displayTurn } from "./dom.js";
 import "./styles.css";
 
-const player1 = new Player("player1", "human");
-const player2 = new Player("player2", "computer");
-const players = { player1: player1, player2: player2 };
+const game = new Game(["player1", "player"], ["player2", "computer"]);
 
-displayTurn();
+displayTurn(game);
 
-createLabel(player1);
-createLabel(player2);
+createLabel(game.player1);
+createLabel(game.player2);
 
-player1.gameboard.addShip([
+game.player1.gameboard.addShip([
   [0, 0],
   [1, 0],
 ]);
-player1.gameboard.addShip([
+game.player1.gameboard.addShip([
   [9, 0],
   [9, 1],
   [9, 2],
   [9, 3],
 ]);
-player1.gameboard.addShip([
+game.player1.gameboard.addShip([
   [3, 3],
   [3, 4],
   [3, 5],
 ]);
-player1.gameboard.addShip([
+game.player1.gameboard.addShip([
   [1, 5],
   [1, 6],
   [1, 7],
   [1, 8],
   [1, 9],
 ]);
-player1.gameboard.addShip([[7, 5]]);
-player1.gameboard.addShip([
+game.player1.gameboard.addShip([[7, 5]]);
+game.player1.gameboard.addShip([
   [5, 8],
   [6, 8],
 ]);
 
-player2.gameboard.addShip([
+game.player2.gameboard.addShip([
   [0, 0],
   [1, 0],
 ]);
-player2.gameboard.addShip([
+game.player2.gameboard.addShip([
   [9, 0],
   [9, 1],
   [9, 2],
   [9, 3],
 ]);
-player2.gameboard.addShip([
+game.player2.gameboard.addShip([
   [3, 3],
   [3, 4],
   [3, 5],
 ]);
-player2.gameboard.addShip([
+game.player2.gameboard.addShip([
   [1, 5],
   [1, 6],
   [1, 7],
   [1, 8],
   [1, 9],
 ]);
-player2.gameboard.addShip([[7, 5]]);
-player2.gameboard.addShip([
+game.player2.gameboard.addShip([[7, 5]]);
+game.player2.gameboard.addShip([
   [5, 8],
   [6, 8],
 ]);
 
-renderBoard(player1);
-renderBoard(player2);
+renderBoard(game.player1);
+renderBoard(game.player2);
 
-domListener();
-
-export { players, turn };
+domListener(game);
