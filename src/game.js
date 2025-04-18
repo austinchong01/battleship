@@ -1,3 +1,4 @@
+import { computerClick } from "./computer";
 import Player from "./player";
 
 export default class Game {
@@ -14,16 +15,18 @@ export default class Game {
     return false
   }
 
-  play(){
-    while(!this.gameOver()){
-      let click = new Promise((resolve, reject) => {
-        
-      })
-    }
+  endGame(player){
+    console.log(`${player.name} wins!`)
   }
 
   changeTurn() {
-    if (this.turn === this.player1) this.turn = this.player2;
-    else this.turn = this.player1;
+    if (this.gameOver()) endGame(this.turn);
+    this.turn = this.player2;
+    // if (this.turn === this.player1) this.turn = this.player2;
+    // else this.turn = this.player1;
+
+    computerClick();
+    if (this.gameOver()) endGame(this.turn);
+    this.turn = this.player1;
   }
 }

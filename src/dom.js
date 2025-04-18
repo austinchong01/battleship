@@ -62,8 +62,6 @@ function domListener(game) {
       const coord = JSON.parse(box.getAttribute("data-index"));
       // const boxType = box.className.split(" ")[1];
       box.setAttribute("data-click", "clicked");
-      box.style.opacity = 0.2;
-
       const player = game.players[domPlayer];
       player.gameboard.receiveAttack(coord);
       game.changeTurn();
