@@ -1,4 +1,5 @@
-import { players, turn, changeTurn } from "./index.js";
+import { players } from "./index.js";
+import { changeTurn, turn } from "./game.js";
 
 function renderBoard(player) {
   const board = document.querySelector(`.${player.name}-board`);

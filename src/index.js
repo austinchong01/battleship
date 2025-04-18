@@ -6,13 +6,6 @@ const player1 = new Player("player1", "human");
 const player2 = new Player("player2", "computer");
 const players = { player1: player1, player2: player2 };
 
-let turn = player1;
-function changeTurn(){
-    if (turn === player1)
-        turn = player2;
-    else
-        turn = player1;
-}
 displayTurn();
 
 createLabel(player1);
@@ -79,4 +72,4 @@ renderBoard(player2);
 
 domListener();
 
-export { players, turn, changeTurn };
+export { players, turn };
