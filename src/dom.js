@@ -1,4 +1,5 @@
 import Game from "./game";
+import { coordToNum } from "./operations";
 
 function renderBoard(player) {
   const board = document.querySelector(`.${player.name}-board`);
@@ -30,9 +31,12 @@ function renderBoard(player) {
       const td = document.createElement("td");
       td.setAttribute("data-index", `[${[j, i]}]`);
       td.setAttribute("class", player.name);
-      if (player.gameboard.board[j][i] != null) {
-        td.classList.add("ship");
-      }
+      if (player.gameboard.board[j][i] !== null) td.classList.add("ship");
+
+      const num = coordToNum([j, i]);
+      if (player.gameboard.clicked.includes(num))
+        td.setAttribute("data-click", "clicked");
+
       tr.appendChild(td);
     }
     table.appendChild(tr);
@@ -52,20 +56,26 @@ function displayTurn(game) {
   turnDOM.textContent = `${game.turn.name}'s Turn`;
 }
 
-
 function domListener(game) {
   const click = document.querySelector("#game");
   click.addEventListener("click", (e) => {
     const box = e.target;
     const domPlayer = box.className.split(" ")[0];
-    if (box.getAttribute("data-click") === null && box.tagName === "TD" && domPlayer !== game.turn.name) {
+    if (
+      box.getAttribute("data-click") === null &&
+      box.tagName === "TD" &&
+      domPlayer !== game.turn.name
+    ) {
       const coord = JSON.parse(box.getAttribute("data-index"));
       // const boxType = box.className.split(" ")[1];
-      box.setAttribute("data-click", "clicked");
+
       const player = game.players[domPlayer];
-      player.gameboard.receiveAttack(coord);
+      player.gameboard.click(coord);
       game.changeTurn();
       displayTurn(game);
+
+      renderBoard(game.player1);
+      renderBoard(game.player2);
     }
   });
 }

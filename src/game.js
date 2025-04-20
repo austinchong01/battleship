@@ -1,4 +1,5 @@
 import { computerClick } from "./computer";
+import { coordToNum, numToCoord } from "./operations";
 import Player from "./player";
 
 export default class Game {
@@ -16,17 +17,21 @@ export default class Game {
   }
 
   endGame(player){
-    console.log(`${player.name} wins!`)
+    console.log(`${player.name} wins!`);
   }
 
   changeTurn() {
-    if (this.gameOver()) endGame(this.turn);
-    this.turn = this.player2;
-    // if (this.turn === this.player1) this.turn = this.player2;
-    // else this.turn = this.player1;
+    if (this.gameOver()) this.endGame(this.turn);
 
-    computerClick();
-    if (this.gameOver()) endGame(this.turn);
+    let randNum = computerClick();
+    while(this.turn.gameboard.clicked.includes(randNum))
+      randNum = computerClick();
+    const coord = numToCoord(randNum);
+
+    this.turn.gameboard.click(coord);
+    this.turn = this.player2;
+
+    if (this.gameOver()) this.endGame(this.turn);
     this.turn = this.player1;
   }
 }

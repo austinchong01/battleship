@@ -1,10 +1,12 @@
 import Ship from "./ship.js";
+import { coordToNum } from "./operations.js";
 
 export default class Gameboard {
   constructor() {
     this.ships = 0;
     this.board = this.createBoard();
     this.missed = [];
+    this.clicked = [];
   }
 
   createBoard() {
@@ -33,14 +35,17 @@ export default class Gameboard {
   }
 
   receiveAttack(coord) {
-    if (this.board[coord[0]][coord[1]] != "clicked") {
-      if (this.board[coord[0]][coord[1]] != null) {
-        const ship = this.getShip(coord);
-        ship.hit();
-        if (ship.isSunk()) this.ships -= 1;
-      } else this.missed.push(coord);
-    }
-    this.board[coord[0]][coord[1]] = "clicked";
+    if (this.board[coord[0]][coord[1]] != null) {
+      const ship = this.getShip(coord);
+      ship.hit();
+      if (ship.isSunk()) this.ships -= 1;
+    } else this.missed.push(coord);
+  }
+
+  click(coord) {
+    const boxNum = coordToNum(coord);
+    this.clicked.push(boxNum);
+    this.receiveAttack(coord);
   }
 
   allShipsSunk() {
