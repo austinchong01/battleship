@@ -33,7 +33,7 @@ td:hover {
   background-color: red;
 }
 
-#turn {
+#turn, #winner {
   text-align: center;
 }
 

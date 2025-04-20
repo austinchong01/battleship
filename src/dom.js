@@ -71,7 +71,11 @@ function domListener(game) {
 
       const player = game.players[domPlayer];
       player.gameboard.click(coord);
-      game.changeTurn();
+      if (game.player2.type === "computer") {
+        game.computerTurn();
+      } else {
+        game.playerTurn();
+      }
       displayTurn(game);
 
       renderBoard(game.player1);
@@ -80,4 +84,10 @@ function domListener(game) {
   });
 }
 
-export { renderBoard, createLabel, domListener, displayTurn };
+function displayEnd(player) {
+  const winner = player.name;
+  const winnerLabel = document.querySelector("#winner");
+  winnerLabel.textContent = `${winner} Wins!`;
+}
+
+export { renderBoard, createLabel, domListener, displayTurn, displayEnd };
