@@ -74,7 +74,7 @@ function domListener(game) {
     ) {
       const coord = JSON.parse(box.getAttribute("data-index"));
       const player = game.players[domPlayer];
-      
+
       player.gameboard.click(coord);
 
       if (game.player2.type === "computer") {
@@ -84,7 +84,7 @@ function domListener(game) {
           displayEnd(game.turn);
           return;
         }
-        game.changeTurn()
+        game.changeTurn();
       }
       displayTurn(game);
 
@@ -94,4 +94,23 @@ function domListener(game) {
   });
 }
 
-export { renderBoard, createLabel, domListener, displayTurn, displayEnd };
+// function getPlayerType() {
+//   const dialog = document.querySelector("#playerType");
+
+//   dialog.addEventListener("click", (e) => {
+//     if (e.target.getAttribute("class") === "type"){
+//       console.log("reached")
+//       dialog.close()
+//     }
+//   });  
+// }
+
+
+export {
+  renderBoard,
+  createLabel,
+  domListener,
+  displayTurn,
+  displayEnd,
+  // getPlayerType,
+};

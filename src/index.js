@@ -1,6 +1,10 @@
 import Game from "./game.js";
-import { renderBoard, createLabel, domListener, displayTurn } from "./dom.js";
+import { renderBoard, createLabel, domListener, displayTurn, getPlayerType } from "./dom.js";
 import "./styles.css";
+
+
+// ask if computer v player
+// getPlayerType();
 
 const game = new Game(["player1", "player"], ["player2", "computer"]);
 
@@ -8,6 +12,9 @@ displayTurn(game);
 
 createLabel(game.player1);
 createLabel(game.player2);
+
+
+// ask players to add ships
 
 game.player1.gameboard.addShip([
   [0, 0],
@@ -47,6 +54,7 @@ game.player1.gameboard.addShip([
 //   [9, 2],
 //   [9, 3],
 // ]);
+
 game.player2.gameboard.addShip([
   [3, 3],
   [3, 4],
