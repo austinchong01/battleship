@@ -42,8 +42,8 @@ export default class Game {
     }
   }
 
-  playerTurn() {
-    if (this.gameOver()) this.endGame(this.turn);
-    // if()
+  changeTurn() {
+    if (this.turn === this.player1) this.turn = this.player2;
+    else this.turn = this.player1
   }
 }

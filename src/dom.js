@@ -74,7 +74,11 @@ function domListener(game) {
       if (game.player2.type === "computer") {
         game.computerTurn();
       } else {
-        game.playerTurn();
+        if (game.gameOver()) {
+          game.endGame(game.turn);
+          return;
+        }
+        game.changeTurn()
       }
       displayTurn(game);
 
