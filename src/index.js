@@ -2,7 +2,7 @@ import Game from "./game.js";
 import { renderBoard, createLabel, domListener, displayTurn } from "./dom.js";
 import "./styles.css";
 
-const game = new Game(["player1", "player"], ["player2", "computer"]);
+const game = new Game(["player1", "player"], ["player2", "player"]);
 
 displayTurn(game);
 
@@ -59,11 +59,11 @@ game.player2.gameboard.addShip([
   [1, 8],
   [1, 9],
 ]);
-game.player2.gameboard.addShip([[7, 5]]);
-game.player2.gameboard.addShip([
-  [5, 8],
-  [6, 8],
-]);
+// game.player2.gameboard.addShip([[7, 5]]);
+// game.player2.gameboard.addShip([
+//   [5, 8],
+//   [6, 8],
+// ]);
 
 renderBoard(game.player1);
 renderBoard(game.player2);

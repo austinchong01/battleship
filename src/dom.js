@@ -64,7 +64,8 @@ function domListener(game) {
     if (
       box.getAttribute("data-click") === null &&
       box.tagName === "TD" &&
-      domPlayer !== game.turn.name
+      domPlayer !== game.turn.name &&
+      !game.gameOver()
     ) {
       const coord = JSON.parse(box.getAttribute("data-index"));
       // const boxType = box.className.split(" ")[1];
