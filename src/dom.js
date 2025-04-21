@@ -1,4 +1,3 @@
-import Game from "./game";
 import { coordToNum } from "./operations";
 
 function renderBoard(player) {
@@ -56,6 +55,12 @@ function displayTurn(game) {
   turnDOM.textContent = `${game.turn.name}'s Turn`;
 }
 
+function displayEnd(player) {
+  const winner = player.name;
+  const winnerLabel = document.querySelector("#winner");
+  winnerLabel.textContent = `${winner} Wins!`;
+}
+
 function domListener(game) {
   const click = document.querySelector("#game");
   click.addEventListener("click", (e) => {
@@ -68,15 +73,15 @@ function domListener(game) {
       !game.gameOver()
     ) {
       const coord = JSON.parse(box.getAttribute("data-index"));
-      // const boxType = box.className.split(" ")[1];
-
       const player = game.players[domPlayer];
+      
       player.gameboard.click(coord);
+
       if (game.player2.type === "computer") {
         game.computerTurn();
       } else {
         if (game.gameOver()) {
-          game.endGame(game.turn);
+          displayEnd(game.turn);
           return;
         }
         game.changeTurn()
@@ -87,12 +92,6 @@ function domListener(game) {
       renderBoard(game.player2);
     }
   });
-}
-
-function displayEnd(player) {
-  const winner = player.name;
-  const winnerLabel = document.querySelector("#winner");
-  winnerLabel.textContent = `${winner} Wins!`;
 }
 
 export { renderBoard, createLabel, domListener, displayTurn, displayEnd };

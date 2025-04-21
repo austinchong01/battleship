@@ -2,7 +2,7 @@ import Game from "./game.js";
 import { renderBoard, createLabel, domListener, displayTurn } from "./dom.js";
 import "./styles.css";
 
-const game = new Game(["player1", "player"], ["player2", "player"]);
+const game = new Game(["player1", "player"], ["player2", "computer"]);
 
 displayTurn(game);
 
