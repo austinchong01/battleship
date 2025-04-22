@@ -108,6 +108,12 @@ function getPlayerType() {
   });  
 }
 
+function getShips(type) {
+
+  const dialog = document.querySelector(`#PlayerVs${type}`);
+  dialog.showModal();
+}
+
 
 export {
   renderBoard,
@@ -116,4 +122,5 @@ export {
   displayTurn,
   displayEnd,
   getPlayerType,
+  getShips
 };
