@@ -55,3 +55,17 @@ td:hover {
 .type:hover {
   background-color: lightgray;
 }
+
+input {
+  width: 30px;
+}
+
+#PlayerVsplayer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#submit {
+  width: 100px;
+}

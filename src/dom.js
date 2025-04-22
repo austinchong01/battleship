@@ -109,9 +109,15 @@ function getPlayerType() {
 }
 
 function getShips(type) {
-
   const dialog = document.querySelector(`#PlayerVs${type}`);
   dialog.showModal();
+  dialog.addEventListener("click", (e) => {
+    if (e.target.getAttribute("class") === "typeDialog"){
+      const type = e.target.getAttribute("id");
+      startGame(type);
+      dialog.close()
+    }
+  });  
 }
 
 
