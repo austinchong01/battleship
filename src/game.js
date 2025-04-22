@@ -1,5 +1,4 @@
-import { computerClick } from "./computer";
-import { coordToNum, numToCoord } from "./operations";
+import { numToCoord } from "./operations";
 import { displayEnd } from "./dom.js";
 import Player from "./player";
 
@@ -20,30 +19,26 @@ export default class Game {
     return false;
   }
 
-  endGame(player) {
-    displayEnd(player);
-  }
-
   computerTurn() {
     if (this.gameOver()) {
-      this.endGame(this.turn);
+      displayEnd(this.turn);
       return;
     }
 
-    let randNum = computerClick();
+    // get computer click of un-clicked box
+    let randNum = Math.floor(Math.random() * 100);
     while (this.turn.gameboard.clicked.includes(randNum))
-      randNum = computerClick();
+      randNum = Math.floor(Math.random() * 100);
     const coord = numToCoord(randNum);
 
     this.turn.gameboard.click(coord);
 
-    if (this.gameOver()) {
-      this.endGame(this.turn);
-    }
+    if (this.gameOver())
+      displayEnd(this.turn);
   }
 
   changeTurn() {
     if (this.turn === this.player1) this.turn = this.player2;
-    else this.turn = this.player1
+    else this.turn = this.player1;
   }
 }

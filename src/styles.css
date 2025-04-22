@@ -40,3 +40,18 @@ td:hover {
 [data-click = "clicked"] {
   opacity: 0.2;
 }
+
+#playerType {
+  display: flex;
+  gap: 20px;
+}
+
+.type {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.type:hover {
+  background-color: lightgray;
+}

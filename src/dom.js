@@ -1,4 +1,3 @@
-import Game from "./game";
 import { coordToNum } from "./operations";
 
 function renderBoard(player) {
@@ -56,6 +55,12 @@ function displayTurn(game) {
   turnDOM.textContent = `${game.turn.name}'s Turn`;
 }
 
+function displayEnd(player) {
+  const winner = player.name;
+  const winnerLabel = document.querySelector("#winner");
+  winnerLabel.textContent = `${winner} Wins!`;
+}
+
 function domListener(game) {
   const click = document.querySelector("#game");
   click.addEventListener("click", (e) => {
@@ -64,21 +69,22 @@ function domListener(game) {
     if (
       box.getAttribute("data-click") === null &&
       box.tagName === "TD" &&
-      domPlayer !== game.turn.name
+      domPlayer !== game.turn.name &&
+      !game.gameOver()
     ) {
       const coord = JSON.parse(box.getAttribute("data-index"));
-      // const boxType = box.className.split(" ")[1];
-
       const player = game.players[domPlayer];
+
       player.gameboard.click(coord);
+
       if (game.player2.type === "computer") {
         game.computerTurn();
       } else {
         if (game.gameOver()) {
-          game.endGame(game.turn);
+          displayEnd(game.turn);
           return;
         }
-        game.changeTurn()
+        game.changeTurn();
       }
       displayTurn(game);
 
@@ -88,10 +94,23 @@ function domListener(game) {
   });
 }
 
-function displayEnd(player) {
-  const winner = player.name;
-  const winnerLabel = document.querySelector("#winner");
-  winnerLabel.textContent = `${winner} Wins!`;
-}
+// function getPlayerType() {
+//   const dialog = document.querySelector("#playerType");
 
-export { renderBoard, createLabel, domListener, displayTurn, displayEnd };
+//   dialog.addEventListener("click", (e) => {
+//     if (e.target.getAttribute("class") === "type"){
+//       console.log("reached")
+//       dialog.close()
+//     }
+//   });  
+// }
+
+
+export {
+  renderBoard,
+  createLabel,
+  domListener,
+  displayTurn,
+  displayEnd,
+  // getPlayerType,
+};
