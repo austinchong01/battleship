@@ -1,4 +1,5 @@
 import { coordToNum } from "./operations";
+import { startGame } from "./index.js";
 
 function renderBoard(player) {
   const board = document.querySelector(`.${player.name}-board`);
@@ -94,16 +95,18 @@ function domListener(game) {
   });
 }
 
-// function getPlayerType() {
-//   const dialog = document.querySelector("#playerType");
+function getPlayerType() {
+  const dialog = document.querySelector("#getType");
+  dialog.showModal();
 
-//   dialog.addEventListener("click", (e) => {
-//     if (e.target.getAttribute("class") === "type"){
-//       console.log("reached")
-//       dialog.close()
-//     }
-//   });  
-// }
+  dialog.addEventListener("click", (e) => {
+    if (e.target.getAttribute("class") === "typeDialog"){
+      const type = e.target.getAttribute("id");
+      startGame(type);
+      dialog.close()
+    }
+  });  
+}
 
 
 export {
@@ -112,5 +115,5 @@ export {
   domListener,
   displayTurn,
   displayEnd,
-  // getPlayerType,
+  getPlayerType,
 };
