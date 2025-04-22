@@ -14,39 +14,21 @@ getPlayerType();
 
 function startGame(type) {
   const game = new Game(["player1", "player"], ["player2", type]);
+  getShips(game);
+}
 
-  // ask players to add ships
-  getShips(type);
+function addShips(game, arr1, arr2){
+  for (let i = 0; i < 4; i += 1){
+    if(arr2.length !== 0){
+      game.player2.gameboard.addShip([[parseInt(arr2[i][0]), parseInt(arr2[i][1])]])
+    }
+    game.player1.gameboard.addShip([[parseInt(arr1[i][0]), parseInt(arr1[i][1])]])
+  }
 
   displayTurn(game);
   createLabel(game.player1);
   createLabel(game.player2);
 
-  // ask players to add ships
-
-  // game.player1.gameboard.addShip([
-  //   [0, 0],
-  //   [1, 0],
-  // ]);
-  // game.player1.gameboard.addShip([
-  //   [9, 0],
-  //   [9, 1],
-  //   [9, 2],
-  //   [9, 3],
-  // ]);
-
-  // game.player2.gameboard.addShip([
-  //   [3, 3],
-  //   [3, 4],
-  //   [3, 5],
-  // ]);
-  // game.player2.gameboard.addShip([
-  //   [1, 5],
-  //   [1, 6],
-  //   [1, 7],
-  //   [1, 8],
-  //   [1, 9],
-  // ]);
 
   renderBoard(game.player1);
   renderBoard(game.player2);
@@ -54,63 +36,4 @@ function startGame(type) {
   domListener(game);
 }
 
-// ask players to add ships
-
-// game.player1.gameboard.addShip([
-//   [0, 0],
-//   [1, 0],
-// ]);
-// game.player1.gameboard.addShip([
-//   [9, 0],
-//   [9, 1],
-//   [9, 2],
-//   [9, 3],
-// ]);
-// game.player1.gameboard.addShip([
-//   [3, 3],
-//   [3, 4],
-//   [3, 5],
-// ]);
-// game.player1.gameboard.addShip([
-//   [1, 5],
-//   [1, 6],
-//   [1, 7],
-//   [1, 8],
-//   [1, 9],
-// ]);
-// game.player1.gameboard.addShip([[7, 5]]);
-// game.player1.gameboard.addShip([
-//   [5, 8],
-//   [6, 8],
-// ]);
-
-// game.player2.gameboard.addShip([
-//   [0, 0],
-//   [1, 0],
-// ]);
-// game.player2.gameboard.addShip([
-//   [9, 0],
-//   [9, 1],
-//   [9, 2],
-//   [9, 3],
-// ]);
-
-// game.player2.gameboard.addShip([
-//   [3, 3],
-//   [3, 4],
-//   [3, 5],
-// ]);
-// game.player2.gameboard.addShip([
-//   [1, 5],
-//   [1, 6],
-//   [1, 7],
-//   [1, 8],
-//   [1, 9],
-// ]);
-// game.player2.gameboard.addShip([[7, 5]]);
-// game.player2.gameboard.addShip([
-//   [5, 8],
-//   [6, 8],
-// ]);
-
-export { startGame };
+export { startGame, addShips };
